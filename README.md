@@ -24,7 +24,7 @@ Provide powerful indexing and searching features in your commerce application wi
 1\. Run the following command in the directory of the Medusa backend:
 
   ```bash
-  npm install medusa-plugin-meilisearch
+  npm install medusa-plugin-meilisearch-multi-indexes
   ```
 
 2\. Set the following environment variables in `.env`:
