@@ -123,11 +123,6 @@ class MeiliSearchService extends SearchUtils.AbstractSearchService {
       this.settings_?.[type].transformer ??
       (type === SearchTypes.indexTypes.PRODUCTS ? transformProduct : (container, document) => document)
 
-    if (!this.settings_?.[type].documents && indexName === "products") {
-      documents = documents.filter(i => i.status === 'published')
-    }
-
-
     const results = await Promise.allSettled(documents.map((i)=> transformer(this.container_, i)));
     const rejected = <T,>(p: PromiseSettledResult<T>): p is PromiseRejectedResult => p.status === 'rejected';
 
