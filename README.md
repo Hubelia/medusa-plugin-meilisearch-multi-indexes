@@ -63,10 +63,42 @@ Provide powerful indexing and searching features in your commerce application wi
               ],
             },
             primaryKey: "id",
-            transformer: (product) => ({
+            transformer: (container, product) => ({
               id: product.id, 
               // other attributes...
             }),
+            documents: (container, documents) => ({
+              id: product.id, 
+              // other attributes...
+            })
+
+          },
+          other_index: {
+            indexSettings: {
+              searchableAttributes: [
+                "title", 
+                "description",
+                "variant_sku",
+              ],
+              displayedAttributes: [
+                "title", 
+                "description", 
+                "variant_sku", 
+                "thumbnail", 
+                "handle",
+              ],
+            },
+            primaryKey: "id",
+            transformer: (container, product) => ({
+              id: product.id, 
+              // other attributes...
+            }),
+            documents: (container, documents) => {
+              // Here you can use the container or any sources to fetch documents
+              // and return the list of documents that will be added to the indexes.
+              // You can also transform the documents here if needed - or use the transformer
+              // to do so.
+            }
           },
         },
       },
