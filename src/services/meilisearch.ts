@@ -120,7 +120,7 @@ class MeiliSearchService extends SearchUtils.AbstractSearchService {
     }
 
     const transformer = await
-      this.settings_?.[type].transformer ??
+      this.settings_?.[indexName]?.transformer ??
       (type === SearchTypes.indexTypes.PRODUCTS ? transformProduct : (container, document) => document)
 
     const results = await Promise.allSettled(documents.map((i)=> transformer(this.container_, i)));

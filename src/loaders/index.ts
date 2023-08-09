@@ -1,6 +1,7 @@
-import { Logger, MedusaContainer } from "@medusajs/modules-sdk"
+import { MedusaContainer } from "@medusajs/modules-sdk"
 import MeiliSearchService from "../services/meilisearch"
 import { MeilisearchPluginOptions } from "../types"
+import { Logger } from "@medusajs/types"
 
 
 export default async (
@@ -17,7 +18,7 @@ export default async (
     await Promise.all(Object.entries(settings || {}).map(async ([indexName, value]) => {
       await meilisearchService.updateSettings(indexName, value)
       if (value.documents) {
-        await meilisearchService.addDocuments(indexName, [], indexName)
+        await meilisearchService.addDocuments(indexName, [], 'products')
       }
     })
     )
