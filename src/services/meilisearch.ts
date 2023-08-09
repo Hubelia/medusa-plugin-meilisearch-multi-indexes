@@ -1,6 +1,4 @@
-import { SearchTypes } from "@medusajs/types"
 import { SearchUtils } from "@medusajs/utils"
-import { AwilixContainer } from "awilix"
 import { MeiliSearch, Settings } from "meilisearch"
 import { IndexSettings, meilisearchErrorCodes, MeilisearchPluginOptions } from "../types"
 import { transformProduct } from '../utils/transformer'
@@ -8,6 +6,7 @@ import { transformProduct } from '../utils/transformer'
 
 import { variantKeys } from "@medusajs/types"
 import { MedusaContainer } from '@medusajs/modules-sdk';
+import { indexTypes } from "medusa-core-utils"
 
 const prefix = `variant`
 
@@ -121,7 +120,7 @@ class MeiliSearchService extends SearchUtils.AbstractSearchService {
 
     const transformer = await
       this.settings_?.[indexName]?.transformer ??
-      (type === SearchTypes.indexTypes.PRODUCTS ? transformProduct : (container, document) => document)
+      (type === indexTypes.products ? transformProduct : (container, document) => document)
 
     const results = await Promise.allSettled(documents.map((i)=> transformer(this.container_, i)));
     const rejected = <T,>(p: PromiseSettledResult<T>): p is PromiseRejectedResult => p.status === 'rejected';
