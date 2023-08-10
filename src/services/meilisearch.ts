@@ -3,8 +3,6 @@ import { MeiliSearch, Settings } from "meilisearch"
 import { IndexSettings, meilisearchErrorCodes, MeilisearchPluginOptions } from "../types"
 import { transformProduct } from '../utils/transformer'
 
-
-import { variantKeys } from "@medusajs/types"
 import { MedusaContainer } from '@medusajs/modules-sdk';
 import { indexTypes } from "medusa-core-utils"
 
