@@ -109,8 +109,8 @@ class MeiliSearchService extends SearchUtils.AbstractSearchService {
     }
   }
 
-  async getTransformedDocuments(indexName, type: string, documents: any[]) {
-    const documentsFunction = this.settings_?.[type]?.documents
+  async getTransformedDocuments(indexName:string, type: string, documents: any[]) {
+    const documentsFunction = this.settings_?.[indexName]?.documents
     if (typeof documentsFunction === 'function') {
       documents = await documentsFunction(this.container_, documents)
     }
