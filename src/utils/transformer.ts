@@ -1,8 +1,10 @@
 import { variantKeys } from "@medusajs/utils"
+import { AwilixContainer } from "awilix"
+import { Product } from "@medusajs/medusa"
 
 const prefix = `variant`
 
-export const transformProduct = (product: any) => {
+export const transformProduct = (_:AwilixContainer, product: Product) => {
   let transformedProduct = { ...product } as Record<string, unknown>
 
   const initialObj = variantKeys.reduce((obj, key) => {
@@ -34,10 +36,9 @@ export const transformProduct = (product: any) => {
     : []
   transformedProduct.categories = (product?.categories || []).map((c) => c.name)
 
-  const prod = {
+
+  return {
     ...transformedProduct,
     ...flattenedVariantFields,
   }
-
-  return prod
 }
