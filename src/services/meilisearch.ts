@@ -51,6 +51,13 @@ class MeiliSearchService extends SearchUtils.AbstractSearchService {
     return this.client_.index(indexName)
   }
 
+  getAllStats(){
+    return this.client_.getStats()
+  }
+
+   getStatsByIndex(indexName: string){
+    return this.client_.index(indexName).getStats()
+  }
   async addDocuments(indexName: string, documents: any, type: string) {
     const transformedDocuments = await this.getTransformedDocuments(indexName, type, documents || [])
 
