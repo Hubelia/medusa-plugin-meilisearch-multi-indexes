@@ -1,6 +1,6 @@
 # MeiliSearch
 
-Provide powerful indexing and searching features in your commerce application with MeiliSearch.
+Provide powerful indexing and searching features in your commerce application with MeiliSearch..
 
 [MeiliSearch Plugin Documentation](https://docs.medusajs.com/plugins/search/meilisearch) | [Medusa Website](https://medusajs.com) | [Medusa Repository](https://github.com/medusajs/medusa)
 
