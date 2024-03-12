@@ -1,8 +1,7 @@
 import { MedusaContainer } from "@medusajs/modules-sdk"
+import { Logger } from "@medusajs/types"
 import MeiliSearchService from "../services/meilisearch"
 import { MeilisearchPluginOptions } from "../types"
-import { Logger } from "@medusajs/types"
-
 
 export default async (
   container: MedusaContainer,

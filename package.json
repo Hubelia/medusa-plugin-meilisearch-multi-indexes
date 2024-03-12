@@ -19,7 +19,8 @@
   },
   "dependencies": {
     "medusa-core-utils": "^1.2.0",
-    "meilisearch": "^0.33.0"
+    "meilisearch": "^0.33.0",
+    "npm-check-updates": "^16.14.15"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",

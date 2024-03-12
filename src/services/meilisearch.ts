@@ -55,7 +55,7 @@ class MeiliSearchService extends SearchUtils.AbstractSearchService {
     return this.client_.getStats()
   }
 
-   getStatsByIndex(indexName: string){
+  getStatsByIndex(indexName: string){
     return this.client_.index(indexName).getStats()
   }
   async addDocuments(indexName: string, documents: any, type: string) {
@@ -124,7 +124,7 @@ class MeiliSearchService extends SearchUtils.AbstractSearchService {
     }
 
     const transformer = await
-      this.settings_?.[indexName]?.transformer ??
+        this.settings_?.[indexName]?.transformer ??
       (type === indexTypes.products ? transformProduct : (container, document) => document)
 
     const results = await Promise.allSettled(documents.map((i)=> transformer(this.container_, i)));
