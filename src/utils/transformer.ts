@@ -5,6 +5,7 @@ import { Product } from "@medusajs/medusa"
 const prefix = `variant`
 
 export const transformProduct = (_:AwilixContainer, product: Product) => {
+  console.log("TRANSOFRMFDSJHFDSHFDJSKFKDHSJHKSFDJHDFSHJSFDJHKFSD", product)
   let transformedProduct = { ...product } as Record<string, unknown>
 
   const initialObj = variantKeys.reduce((obj, key) => {
@@ -35,6 +36,7 @@ export const transformProduct = (_:AwilixContainer, product: Product) => {
     ? product.tags.map((t) => t.value)
     : []
   transformedProduct.categories = (product?.categories || []).map((c) => c.name)
+  console.log("Transformed Product", transformedProduct)
 
 
   return {

@@ -59,11 +59,14 @@ class MeiliSearchService extends SearchUtils.AbstractSearchService {
     return this.client_.index(indexName).getStats()
   }
   async addDocuments(indexName: string, documents: any, type: string) {
+    console.log("HEREWEARE", indexName)
     const transformedDocuments = await this.getTransformedDocuments(indexName, type, documents || [])
-
-    return await this.client_
-      .index(indexName)
-      .addDocuments(transformedDocuments)
+    console.log('transformedDocuments', transformedDocuments)
+    return '[ptdfshjfdhjksskhjfdhkjfsd'
+    //
+    // return await this.client_
+    //   .index(indexName)
+    //   .addDocuments(transformedDocuments)
   }
 
   async replaceDocuments(indexName: string, documents: any, type: string) {
@@ -96,10 +99,8 @@ class MeiliSearchService extends SearchUtils.AbstractSearchService {
   ) {
     // backward compatibility
     const indexSettings = settings.indexSettings ?? settings ?? {}
-
     await this.upsertIndex(indexName, settings)
-
-    return await this.client_.index(indexName).updateSettings(indexSettings)
+    return await this.client_.index(indexName).updateSettings(indexSettings);
   }
 
   async upsertIndex(indexName: string, settings: IndexSettings) {
@@ -116,6 +117,7 @@ class MeiliSearchService extends SearchUtils.AbstractSearchService {
 
   async getTransformedDocuments(indexName:string, type: string, documents: any[]) {
     const documentsFunction = this.settings_?.[indexName]?.documents
+    console.log("DOCUMENTISAFUNCITON!!!!!!!!!!!!!!!!!!!!!!!!!!!", documentsFunction)
     if (typeof documentsFunction === 'function') {
       documents = await documentsFunction(this.container_, documents)
     }
@@ -126,6 +128,7 @@ class MeiliSearchService extends SearchUtils.AbstractSearchService {
     const transformer = await
         this.settings_?.[indexName]?.transformer ??
       (type === indexTypes.products ? transformProduct : (container, document) => document)
+    console.log("TRANSFORMING")
 
     const results = await Promise.allSettled(documents.map((i)=> transformer(this.container_, i)));
     const rejected = <T,>(p: PromiseSettledResult<T>): p is PromiseRejectedResult => p.status === 'rejected';

@@ -17,6 +17,7 @@ export default async (
     await Promise.all(Object.entries(settings || {}).map(async ([indexName, value]) => {
       await meilisearchService.updateSettings(indexName, value)
       if (value.documents) {
+        console.log("HASDOCUMENTS!!")
         await meilisearchService.addDocuments(indexName, [], 'products')
       }
     })
